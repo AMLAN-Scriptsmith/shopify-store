@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page_description | escape }}">
+    <title>{{ page_title }}</title>
+    
+    <!-- CSS Assets -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'components.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Shopify Canonical -->
+    <link rel="canonical" href="{{ canonical_url }}">
+    
+    <!-- Meta Tags -->
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}" />
+    {% endif %}
+    
+    <meta property="og:title" content="{{ page_title | escape }}" />
+    <meta property="og:description" content="{{ page_description | escape }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ canonical_url }}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+  </head>
+  
+  <body>
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Header / Navigation (PRIMARY COLOR - 60%) -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="{{ '/' | relative_url }}" class="logo">
+          {{ shop.name }}
+        </a>
+        
+        <nav>
+          <ul class="nav-menu">
+            {% for link in linklists.main-menu.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+      {{ content_for_layout }}
+    </main>
+    
+    <!-- Footer (PRIMARY COLOR - 60%) -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About Us</h4>
+          <p>Your store description goes here. Share your brand story with customers.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+            <li><a href="/pages/about">About</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="/pages/shipping">Shipping Info</a></li>
+            <li><a href="/pages/returns">Returns</a></li>
+            <li><a href="/pages/faq">FAQ</a></li>
+            <li><a href="/pages/support">Support</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#" target="_blank">Facebook</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">Twitter</a></li>
+            <li><a href="#" target="_blank">Pinterest</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <!-- Shopify Core JS -->
+    {{ 'shopify-app.js' | shopify_asset_url | script_tag }}
+  </body>
+</html>
