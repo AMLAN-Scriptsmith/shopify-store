@@ -1,0 +1,148 @@
+{% schema %}
+{
+  "name": "Newsletter Signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Subscribe to Our Newsletter"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Description",
+      "default": "Get the latest updates on new products and exclusive offers!"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Signup"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .newsletter-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    text-align: center;
+    color: white;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .newsletter-section p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .newsletter-form button {
+    padding: 15px 40px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .newsletter-form button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+  }
+
+  .newsletter-form input::placeholder {
+    color: #ccc;
+  }
+
+  .success-message {
+    color: #fff;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .newsletter-section {
+      padding: 50px 20px;
+    }
+
+    .newsletter-section h2 {
+      font-size: 1.8rem;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="newsletter-section">
+  <div class="newsletter-content">
+    <h2>{{ section.settings.section_title }}</h2>
+    <p>{{ section.settings.section_description }}</p>
+    
+    <form class="newsletter-form" method="POST">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Enter your email address" 
+        required
+        aria-label="Email address"
+      >
+      <button type="submit">{{ section.settings.button_text }}</button>
+    </form>
+
+    <script>
+      document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[name="email"]').value;
+        if (email) {
+          alert('Thank you for subscribing!');
+          this.reset();
+        }
+      });
+    </script>
+  </div>
+</div>

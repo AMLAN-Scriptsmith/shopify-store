@@ -1,0 +1,73 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_title": "Welcome to Your Shopify Store",
+        "hero_subtitle": "Discover amazing products and exclusive collections",
+        "button_text": "Start Shopping",
+        "button_link": "/collections/all"
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "settings": {
+        "section_title": "Shop Our Featured Collections"
+      },
+      "blocks": {
+        "block-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "all"
+          }
+        }
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "section_title": "What Our Customers Say"
+      },
+      "blocks": {
+        "block-1": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Sarah Johnson",
+            "testimonial_text": "Amazing quality and fast shipping! I'm very impressed with the products and customer service.",
+            "rating": 5
+          }
+        },
+        "block-2": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Michael Chen",
+            "testimonial_text": "Best online shopping experience I've had. The website is easy to use and the products are as described.",
+            "rating": 5
+          }
+        },
+        "block-3": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Emma Davis",
+            "testimonial_text": "Excellent selection and great prices. Will definitely be shopping here again!",
+            "rating": 5
+          }
+        }
+      }
+    },
+    "newsletter": {
+      "type": "newsletter-signup",
+      "settings": {
+        "section_title": "Stay Updated",
+        "section_description": "Subscribe to our newsletter for exclusive deals and new product announcements.",
+        "button_text": "Subscribe Now"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured-collections",
+    "testimonials",
+    "newsletter"
+  ]
+}

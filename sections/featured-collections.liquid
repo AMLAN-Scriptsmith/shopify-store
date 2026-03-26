@@ -1,0 +1,132 @@
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Featured Collections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .featured-collections {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+  }
+
+  .featured-collections h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #333;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .collection-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .collection-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .collection-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .collection-info {
+    padding: 20px;
+  }
+
+  .collection-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .collection-link {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .collection-link:hover {
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .featured-collections h2 {
+      font-size: 1.8rem;
+    }
+
+    .collections-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+  }
+</style>
+
+<div class="featured-collections">
+  <h2>{{ section.settings.section_title }}</h2>
+  
+  <div class="collections-grid">
+    {% for block in section.blocks %}
+      {% if block.settings.collection %}
+        <div class="collection-card">
+          {% if block.settings.collection_image %}
+            <img src="{{ block.settings.collection_image | image_url: width: 500 }}" alt="{{ block.settings.collection.title }}" class="collection-image">
+          {% else %}
+            <div class="collection-image" style="background-color: #e0e0e0;"></div>
+          {% endif %}
+          <div class="collection-info">
+            <div class="collection-name">{{ block.settings.collection.title }}</div>
+            <a href="{{ block.settings.collection.url }}" class="collection-link">View Collection →</a>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
